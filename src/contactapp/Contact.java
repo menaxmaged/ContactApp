@@ -16,11 +16,11 @@ private Integer id;
 //constructor 
 
 public Contact(Integer id,String name,String mail, String phone) {
- this.id=id;
+   this.id=id;
   this.name = name;
  this.mail = mail;
  this.phone = phone;
- 
+   
 }
 //setters
 public void setName(String name){
