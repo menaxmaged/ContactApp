@@ -40,7 +40,6 @@ public String GetName(){
     return this.name;
 }
 
-
 public  String GetMail(){
     return this.mail;
 }
@@ -49,6 +48,9 @@ public String GetPhone(){
     return this.phone;
 }
 
+public Integer GetId(){
+    return this.id;
+}
 
 
 

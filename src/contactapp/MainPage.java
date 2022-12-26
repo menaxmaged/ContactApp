@@ -206,8 +206,7 @@ public class MainPage extends javax.swing.JFrame {
 
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here
-        contactid++;       
-            Data_valid(contactid,cname.getText(),cmail.getText(),cphone.getText());
+            Data_valid(cname.getText(),cmail.getText(),cphone.getText());
         clr();
    
 
@@ -219,7 +218,7 @@ public class MainPage extends javax.swing.JFrame {
         setMess("");
     }//GEN-LAST:event_clbtnActionPerformed
 
-     public void  Data_valid(Integer id,String name,String mail,String phone){
+     public void  Data_valid(String name,String mail,String phone){
     Boolean isvalid;
     
 if (!name.isEmpty()&&!mail.isEmpty()&&!phone.isEmpty()){
@@ -228,7 +227,7 @@ if (!name.isEmpty()&&!mail.isEmpty()&&!phone.isEmpty()){
      setMess("Please Enter a Vaild Mail"); }
      else{ 
          isvalid=true;    
-          pushdata(id,name,mail,phone,isvalid); }  
+          pushdata(name,mail,phone,isvalid); }  
 } else if (!name.isEmpty()&&!mail.isEmpty()&&phone.isEmpty()){
 setMess("Please Enter phone");
 }
@@ -250,12 +249,13 @@ setMess("Please Enter Missing Data");
     
      
      
-     public void pushdata(Integer id,String name,String mail,String phone,Boolean  isvalid){
+     public void pushdata(String name,String mail,String phone,Boolean  isvalid){
          if(isvalid == true){
-         Contact  person   = new Contact(id,name,mail,phone);
+                     contactid++;      
+         Contact  person   = new Contact(contactid,name,mail,phone);
         DefaultTableModel table;
         table = (DefaultTableModel)jTable1.getModel();
-                   table.addRow(new Object[]{id,person.GetName(),person.GetMail(),person.GetPhone()});
+                   table.addRow(new Object[]{person.GetId(),person.GetName(),person.GetMail(),person.GetPhone()});
          }
                  
      }
