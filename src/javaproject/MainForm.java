@@ -5,9 +5,12 @@
 package javaproject;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -55,6 +58,9 @@ public class MainForm extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -281,38 +287,51 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_namefldActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-/*
-        JOptionPane.showMessageDialog(null, "Saving Data ..... Good Bye ");  
 
-             DefaultTableModel tmodel;
-        tmodel = (DefaultTableModel)ctable.getModel();
-    Vector<Vector> data = tmodel.getDataVector();
+       // JOptionPane.showMessageDialog(null, "Saving Data ..... Good Bye ");  
+   DefaultTableModel tmodel;
+    tmodel = (DefaultTableModel)ctable.getModel();
+    Vector<Vector> tdata = tmodel.getDataVector();
          try {
-  
-        
-     FileWriter datfile = new FileWriter("data.dat");
-    savedat();
-       } catch (IOException e) {
+ FileOutputStream datfile = new FileOutputStream("contacts.dat");
+ ObjectOutputStream outdat = new ObjectOutputStream(datfile);
+    outdat.writeObject(tdata);
+    
+    outdat.close();
+    datfile.close();
+    
+      
+         } catch (IOException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
-    }   
-   
-        // TODO add your handling code here:
-*/
+    }           // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
-/*
-        private void savedat(){
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code her:
+     try {
+ FileInputStream datfile = new FileInputStream("contacts.dat");
+ ObjectInputStream indata = new ObjectInputStream(datfile);
+    Vector<Vector> tdata = (Vector<Vector>)indata.readObject();
+      indata.close();
+      datfile.close();
+ 
        DefaultTableModel tmodel;
-        tmodel = (DefaultTableModel)ctable.getModel();
-     
-       datfile.  tmodel.getValueAt(0,1);
-        
-  }
-    
-    
-    */
-    
-    /**
+    tmodel = (DefaultTableModel)ctable.getModel();
+      for(int i=0; i < tdata.size(); i++){
+       Vector datrow = tdata.get(i);
+      tmodel.addRow(new Object[]{datrow.get(0),datrow.get(1),datrow.get(2)});  
+       
+   }    
+  
+      
+      
+         } catch (Exception ex) {
+      System.out.println("An error occurred.");
+     ex.printStackTrace();
+    }         
+    }//GEN-LAST:event_formWindowOpened
+  /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -347,7 +366,6 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnclr;
