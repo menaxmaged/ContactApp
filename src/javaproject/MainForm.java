@@ -4,6 +4,7 @@
  */
 package javaproject;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,7 +48,6 @@ public class MainForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ctable = new javax.swing.JTable();
         delbtn = new javax.swing.JButton();
-        edtbtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -162,13 +162,6 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        edtbtn.setText("Edit");
-        edtbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtbtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -180,18 +173,14 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(delbtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(edtbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(delbtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delbtn)
-                    .addComponent(edtbtn))
+                .addComponent(delbtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
@@ -244,10 +233,6 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void edtbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edtbtnActionPerformed
-
     private void delbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delbtnActionPerformed
                 DefaultTableModel tmodel;
         tmodel = (DefaultTableModel)ctable.getModel();
@@ -296,36 +281,37 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_namefldActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
+/*
         JOptionPane.showMessageDialog(null, "Saving Data ..... Good Bye ");  
 
              DefaultTableModel tmodel;
         tmodel = (DefaultTableModel)ctable.getModel();
     Vector<Vector> data = tmodel.getDataVector();
-
-
-
-    
-    
-       try {
-      FileOutputStream file = new FIleOutputStream("Contacts.bin");
-      OpjectOutputStream tbldat = new OpjectOutputStream(dat);
-      
+         try {
+  
+        
+     FileWriter datfile = new FileWriter("data.dat");
+    savedat();
        } catch (IOException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
-    }
-      
-    
-    
-    
-    
-    
-    
-
+    }   
+   
         // TODO add your handling code here:
+*/
     }//GEN-LAST:event_formWindowClosing
-
+/*
+        private void savedat(){
+       DefaultTableModel tmodel;
+        tmodel = (DefaultTableModel)ctable.getModel();
+     
+       datfile.  tmodel.getValueAt(0,1);
+        
+  }
+    
+    
+    */
+    
     /**
      * @param args the command line arguments
      */
@@ -367,7 +353,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton btnclr;
     private javax.swing.JTable ctable;
     private javax.swing.JButton delbtn;
-    private javax.swing.JButton edtbtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
